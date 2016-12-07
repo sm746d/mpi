@@ -14,7 +14,7 @@ int main(void)
   const char *s = " ";
   char *token = NULL;
 
-  int i = 0,j = 0, m, n,r,p;
+  int i = 0,j = 0, m, n, nl=0, r, p;
   int a[200][200],b[200][200]={0} ;
 
   MPI_Init(NULL, NULL);
@@ -53,6 +53,15 @@ int main(void)
            j++;
          }
          n=j;     //N is number of columns
+         if(nl==0)
+         {
+            nl=n;
+         }
+         else if(n!=nl)
+         {
+            printf("Exiting out of program as the matrix has improper column sequnce for %i row\n\n",i);
+            exit(0);
+         }
          i++;
          j=0;
       }
